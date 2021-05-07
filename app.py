@@ -29,13 +29,17 @@ def register():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    id = request.args.get('username')
-    pw = request.args.get('password')
-    if DB.login(id, pw):
-        return redirect("main")
-    else:
-        flash("아이디가 없거나 비밀번호가 틀립니다.")
-        return render_template('login.html')
+    if request.method == 'POST':
+        id = request.args.get('username')
+        pw = request.args.get('password')
+        if DB.login(id, pw) == True:
+            flash("성공")
+            # return redirect("main")
+        else:
+            flash("아이디가 없거나 비밀번호가 틀립니다.")
+            return render_template('login.html')
+    return render_template('login.html')
+
         
 
 @app.route("/logout")
