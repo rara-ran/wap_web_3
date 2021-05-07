@@ -1,11 +1,17 @@
 from pyrebase import pyrebase
-import json
 
 
 class DBModule:
     def __init__(self):
-        with open("./auth/firebaseAuth.json") as f:
-            config = json.load(f)
+        config = {
+            "apiKey": "AIzaSyCFj9VQyRjRoqHDX_ZtFhS2h2JwGHWbAPA",
+            "authDomain": "wap-web-project.firebaseapp.com",
+            "databaseURL": "https://wap-web-project-default-rtdb.firebaseio.com",
+            "projectId": "wap-web-project",
+            "storageBucket": "wap-web-project.appspot.com",
+            "messagingSenderId": "283455518398",
+            "appId": "1:283455518398:web:9118aedeeb91e69b0c50ef"
+        }
 
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
